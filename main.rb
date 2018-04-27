@@ -17,8 +17,16 @@ stream_client = Twitter::Streaming::Client.new do |config|
   config.access_token_secret = ENV["MY_ACCESS_TOKEN_SECRET"]
 end
 
+random = Random.new
+
 stream_client.filter(track: "#てすと") do |tweet|
   if tweet.is_a?(Twitter::Tweet)
-    client.update("@#{tweet.user.screen_name}\npo", options = {:in_reply_to_status_id => tweet.id})
+    number = random.rand(0..2)
+    if number == 0
+      text = "当たり"
+    else
+      text = "はずれ"
+    end
+    client.update("@#{tweet.user.screen_name}\nrandom = #{number}\n#{text}です", options = {:in_reply_to_status_id => tweet.id})
   end
 end
