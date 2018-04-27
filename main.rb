@@ -23,10 +23,10 @@ stream_client.filter(track: "#てすと") do |tweet|
   if tweet.is_a?(Twitter::Tweet)
     number = random.rand(0..2)
     if number == 0
-      text = "当たり"
+      hantei = "atari"
     else
-      text = "はずれ"
+      hantei = "hazure"
     end
-    client.update("@#{tweet.user.screen_name}\nrandom = #{number}\n#{text}です", options = {:in_reply_to_status_id => tweet.id})
+    client.update_with_media("@#{tweet.user.screen_name}\nご応募ありがとうございます！\n気になる抽選の結果は…！？\n当選するまで何度でも挑戦できますよ♪\n5/31（木）23:59まで！\nrandom = #{number}\n", File.open("./res/#{hantei}.png"), options = {:in_reply_to_status_id => tweet.id})
   end
 end
