@@ -3,23 +3,30 @@ require "dotenv"
 
 Dotenv.load
 
-client = Twitter::REST::Client.new do |config|
+nagatech_client = Twitter::REST::Client.new do |config|
   config.consumer_key        = ENV["MY_CONSUMER_KEY"]
   config.consumer_secret     = ENV["MY_CONSUMER_SECRET"]
   config.access_token        = ENV["MY_ACCESS_TOKEN"]
   config.access_token_secret = ENV["MY_ACCESS_TOKEN_SECRET"]
 end
 
-stream_client = Twitter::Streaming::Client.new do |config|
+nagatech_stream_client = Twitter::Streaming::Client.new do |config|
   config.consumer_key        = ENV["MY_CONSUMER_KEY"]
   config.consumer_secret     = ENV["MY_CONSUMER_SECRET"]
   config.access_token        = ENV["MY_ACCESS_TOKEN"]
   config.access_token_secret = ENV["MY_ACCESS_TOKEN_SECRET"]
+end
+
+cheese_client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV["MY_CONSUMER_KEY2"]
+  config.consumer_secret     = ENV["MY_CONSUMER_SECRET2"]
+  config.access_token        = ENV["MY_ACCESS_TOKEN2"]
+  config.access_token_secret = ENV["MY_ACCESS_TOKEN_SECRET2"]
 end
 
 random = Random.new
 
-stream_client.filter(track: "#てすと") do |tweet|
+nagatech_stream_client.filter(track: "#てすと") do |tweet|
   if tweet.is_a?(Twitter::Tweet)
     number = random.rand(0..2)
     if number == 0
@@ -27,6 +34,6 @@ stream_client.filter(track: "#てすと") do |tweet|
     else
       hantei = "hazure"
     end
-    client.update_with_media("@#{tweet.user.screen_name}\nご応募ありがとうございます！\n気になる抽選の結果は…！？\n当選するまで何度でも挑戦できますよ♪\n5/31（木）23:59まで！\nrandom = #{number}\n", File.open("./res/#{hantei}.png"), options = {:in_reply_to_status_id => tweet.id})
+    cheese_client.update_with_media("@#{tweet.user.screen_name}\nご応募ありがとうございます！\n気になる抽選の結果は…！？\n当選するまで何度でも挑戦できますよ♪\n5/16（水）23:59まで！\n\nキャンペーンの詳しい詳細はこちらから！\nhttps://blog.nagatech.work/nagatech-campaign\nrandom = #{number}\n", File.open("./res/#{hantei}.png"), options = {:in_reply_to_status_id => tweet.id})
   end
 end
