@@ -26,11 +26,12 @@ end
 
 random = Random.new
 
-nagatech_stream_client.filter(track: "#てすと") do |tweet|
+nagatech_stream_client.filter(track: "#ながてちキャンペーン") do |tweet|
   if tweet.is_a?(Twitter::Tweet)
     number = random.rand(0..2)
     if number == 0
       hantei = "atari"
+      cheese_client.update("@syobon_titech\n@#{tweet.user.screen_name} さんが当選しました")
     else
       hantei = "hazure"
     end
