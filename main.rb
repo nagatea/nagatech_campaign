@@ -26,15 +26,15 @@ end
 
 random = Random.new
 
-nagatech_stream_client.filter(track: "#ながてちキャンペーン") do |tweet|
+nagatech_stream_client.filter(track: "#てすと") do |tweet|
   if tweet.is_a?(Twitter::Tweet)
-    number = random.rand(0..33)
+    number = random.rand(0..2)
     if number == 0
       hantei = "atari"
       cheese_client.update("@syobon_titech\n@#{tweet.user.screen_name} さんが当選しました")      
     else
       hantei = "hazure"
     end
-    nagatech_client.update_with_media("@#{tweet.user.screen_name}\nご応募ありがとうございます！\n気になる抽選の結果は…！？\n当選するまで何度でも挑戦できますよ♪\n5/16（水）23:59まで！\n\nキャンペーンの詳しい詳細はこちらから！\nhttps://blog.nagatech.work/nagatech-campaign\n", File.open("./res/#{hantei}.png"), options = {:in_reply_to_status_id => tweet.id})
+    cheese_client.update_with_media("@#{tweet.user.screen_name}\nご応募ありがとうございます！\n気になる抽選の結果は…！？\n当選するまで何度でも挑戦できますよ♪\n5/16（水）23:59まで！\n\nキャンペーンの詳しい詳細はこちらから！\nhttps://blog.nagatech.work/nagatech-campaign\n", File.open("./res/#{hantei}.png"), options = {:in_reply_to_status_id => tweet.id})
   end
 end
