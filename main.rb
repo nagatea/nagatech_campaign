@@ -35,6 +35,6 @@ nagatech_stream_client.filter(track: "#ながてちキャンペーン") do |twee
     else
       hantei = "hazure"
     end
-    nagatech_client.update_with_media("@#{tweet.user.screen_name}\nご応募ありがとうございます！\n気になる抽選の結果は…！？\n当選するまで何度でも挑戦できますよ♪\n5/16（水）23:59まで！\n\nキャンペーンの詳しい詳細はこちらから！\nhttps://blog.nagatech.work/nagatech-campaign\n", File.open("./res/#{hantei}.png"), options = {:in_reply_to_status_id => tweet.id})
+    nagatech_client.update_with_media("@#{tweet.user.screen_name}\nご応募ありがとうございます！\n気になる抽選の結果は…！？\n当選するまで何度でも挑戦できますよ♪\n6/14（木）23:59まで！\n\nキャンペーンの詳しい詳細はこちらから！\nhttps://blog.nagatech.work/nagatech-campaign\n", File.open("./res/#{hantei}.png"), options = {:in_reply_to_status_id => tweet.id})
   end
 end
