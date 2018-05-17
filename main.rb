@@ -43,11 +43,11 @@ begin
     end
   end
 rescue => exception
-  retry_conut += 1
-  if retry_conut < 7
-    #client2.update("エラー発生(リトライ回数#{retry_conut}回目)\n#{exception.message}\n#{JSTTime.timecode}")
-    puts("エラー発生(リトライ回数#{retry_conut}回目)\n#{exception.message}\n#{exception.backtrace}\n#{JSTTime.timecode}")
-    retry if retry_conut < 7
+  retry_count += 1
+  if retry_count < 7
+    #client2.update("エラー発生(リトライ回数#{retry_count}回目)\n#{exception.message}\n#{JSTTime.timecode}")
+    puts("エラー発生(リトライ回数#{retry_count}回目)\n#{exception.message}\n#{exception.backtrace}\n#{JSTTime.timecode}")
+    retry if retry_count < 7
   else
     client.update("@syobon_titech\nエラー発生\nリトライ回数が規定回数を超えたので強制終了します。\n#{exception.message}\n#{JSTTime.timecode}")
   end
