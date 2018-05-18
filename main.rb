@@ -1,10 +1,5 @@
 require "twitter"
-<<<<<<< HEAD
-require "./time.rb"
-#require "dotenv"
-=======
 require "dotenv"
->>>>>>> rest
 
 Dotenv.load
 
